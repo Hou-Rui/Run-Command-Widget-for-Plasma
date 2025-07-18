@@ -44,7 +44,7 @@ PlasmoidItem {
         MouseArea {
             anchors.fill: parent
             onClicked: executable.exec(plasmoid.configuration.command)
-            onPressed: executable.exec(plasmoid.configuration.command)
+            // onPressed: executable.exec(plasmoid.configuration.command)
         }
 
         PlasmaCore.ToolTipArea {
@@ -56,8 +56,15 @@ PlasmoidItem {
 
         Kirigami.Icon {
             id: icon
-            height: Math.min(parent.height, parent.width)
+            height: {
+                if (plasmoid.configuration.isIconSizeFixed) {
+                    return plasmoid.configuration.iconSize;
+                }
+                return Math.min(parent.height, parent.width);
+            }
             width: valid ? height : 0
+            roundToIconSize: !plasmoid.configuration.isIconSizeFixed
+            anchors.centerIn: parent
             visible: plasmoid.configuration.menuLabel === "" || plasmoid.configuration.icon !== ""
             source: plasmoid.configuration.icon
         }

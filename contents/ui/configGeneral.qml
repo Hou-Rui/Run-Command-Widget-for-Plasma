@@ -22,6 +22,8 @@ KCM.SimpleKCM {
     property string cfg_menuLabel: menuLabel.text
     property string cfg_command: command.text
     property string cfg_icon: Plasmoid.configuration.icon
+    property bool cfg_isIconSizeFixed: Plasmoid.configuration.isIconSizeFixed
+    property int cfg_iconSize: Plasmoid.configuration.iconSize
     property string def_icon: "new-command-alarm"
 
     Kirigami.FormLayout {
@@ -90,6 +92,19 @@ KCM.SimpleKCM {
                     onClicked: cfg_icon = ""
                 }
             }
+        }
+
+        CheckBox {
+            Kirigami.FormData.label: i18nc("@label:checkbox", "Use fixed icon size:")
+            checked: Plasmoid.configuration.isIconSizeFixed
+            onToggled: cfg_isIconSizeFixed = checked
+        }
+
+        SpinBox {
+            enabled: cfg_isIconSizeFixed
+            Kirigami.FormData.label: i18nc("@label:textbox", "Icon size:")
+            value: Plasmoid.configuration.iconSize
+            onValueChanged: cfg_iconSize = value
         }
 
         Kirigami.ActionTextField {

@@ -10,6 +10,14 @@
       <label>Icon</label>
       <default>new-command-alarm</default>
     </entry>
+    <entry name="isIconSizeFixed" type="bool">
+      <label>Use fixed icon size</label>
+      <default>false</default>
+    </entry>
+    <entry name="iconSize" type="int">
+      <label>Fixed icon size</label>
+      <default>22</default>
+    </entry>
     <entry name="menuLabel" type="string">
       <label>Text label</label>
       <default></default>
